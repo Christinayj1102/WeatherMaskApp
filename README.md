@@ -96,6 +96,17 @@ WeatherMaskApp
 ```
 
 ---
+## 실행 전 설정
+
+보안을 위해 API 키가 포함된 `config.properties` 파일은 GitHub에 업로드하지 않았습니다.
+
+프로그램을 실행하려면 프로젝트 루트 디렉터리에 아래 파일을 생성해야 합니다.
+
+```properties
+KMA_API_KEY=YOUR_KMA_API_KEY
+AIR_API_KEY=YOUR_AIRKOREA_API_KEY
+OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+
 
 ## 실행 방법
 
