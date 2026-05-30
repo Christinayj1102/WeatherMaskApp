@@ -1,6 +1,7 @@
 # AI 기반 날씨 마스크 추천 애플리케이션
 
 2026-1학기 자바 프로그래밍 기말 프로젝트
+![Application Screenshot](screenshot.png)
 
 ## 프로젝트 소개
 
