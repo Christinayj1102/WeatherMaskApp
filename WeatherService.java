@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class WeatherService {
 
@@ -25,11 +27,16 @@ public class WeatherService {
         try {
             String serviceKey = loadApiKey();
 
+            LocalDateTime now = LocalDateTime.now().minusMinutes(40);
+
+            String baseDate = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+            String baseTime = String.format("%02d00", now.getHour());
+
             String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"
                     + "?numOfRows=10"
                     + "&pageNo=1"
-                    + "&base_date=20260530"
-                    + "&base_time=0600"
+                    + "&base_date=" + baseDate
+                    + "&base_time=" + baseTime
                     + "&nx=55"
                     + "&ny=127"
                     + "&serviceKey=" + serviceKey;
@@ -77,6 +84,10 @@ public class WeatherService {
 
         int valueStart = xml.indexOf("<obsrValue>", categoryIndex) + "<obsrValue>".length();
         int valueEnd = xml.indexOf("</obsrValue>", valueStart);
+
+        if (valueStart == -1 || valueEnd == -1) {
+            return "0";
+        }
 
         return xml.substring(valueStart, valueEnd);
     }
